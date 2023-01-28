@@ -28,4 +28,9 @@ export class ProductService {
   async createNew(): Promise<Product> {
     return this.productRepository.create();
   }
+
+  async updatePrice(id: number, price: number): Promise<Product> {
+    await this.productRepository.update(id, { price: price });
+    return this.productRepository.findOneByOrFail({ id });
+  }
 }
